@@ -1,0 +1,40 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Log in |{% endblock title %}
+
+{% block content %}
+<div class="p-5 lg:p-20 text-center">
+    <h1 class="text-3xl lg:text-6xl text-white">Login</h1>
+</div>
+
+<style>
+    .alert-no-background {
+        background-color: transparent;
+        color: white;
+        border: none;
+    }
+</style>
+
+<div class="mb-4 text-center">
+    {% for message in messages %}
+        <div class="alert alert-{{message.tags}} alert-no-background" role="alert">
+            <strong>{{message}} </strong> 
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+</div>
+<form method="POST" action="" class="lg:w-1/4 px-4 mx-auto">
+    {% csrf_token %}
+    <div class="mb-3">
+        <input type="text" name="username" placeholder="Username" class="w-full mt-2 px-4 py-2 rounded-xl">
+    </div>
+
+    <div class="mb-3">
+        <input type="password" name="password" placeholder="Password" class="w-full mt-2 px-4 py-2 rounded-xl">
+    </div>
+
+    <button class="px-3 py-2 rounded-xl text-white bg-teal-800 hover:bg-teal-700">Login</button> <b> New User ?</b>
+    <a href="{% url 'signup' %}" class="px-3 py-2 rounded-xl text-white bg-teal-800 hover:bg-teal-700"> Signup</a>
+
+</form>
+{% endblock content %}

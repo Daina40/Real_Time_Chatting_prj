@@ -1,0 +1,36 @@
+{% extends 'core/base.html' %} {% block title %}Rooms | {% endblock %}
+
+{% block content %}
+<div class="p-10 lg:p-20 text-center">
+    <h1 class="text-3xl lg:text-6xl mt-6 text-white">Rooms</h1>
+</div>
+
+<div class="w-full flex flex-wrap items-center">
+    <form id="post-form" method="POST" action="{% url 'checkview' %}" class="lg:w-1/4 px-4 mx-auto">
+        {% csrf_token %}
+        
+        <div class="mb-3">
+            <label id="room_name_top">Room Name</label>
+            <input id="room_name" type="text" name="room_name" placeholder="room name" class="form-control w-full mt-2 px-4 py-2 rounded-xl" style="margin-top: 10px;">
+        </div>
+        
+        <div class="mb-3">
+            <label id="username_top">Username</label>
+            <input id="username" type="text" name="username" placeholder="Username" class="form-control w-full mt-2 px-4 py-2 rounded-xl" style="margin-top: 10px;">
+        </div>
+        <button type="submit" class="px-3 py-2 rounded-xl text-white bg-teal-800 hover:bg-teal-700">Start Chat Now!</button>
+    </form>
+</div>
+
+{% comment %} <div class="w-full mt-10 flex flex-wrap">
+    <ul class="lg:w-1/4 px-4 mx-auto">
+        {% for room in rooms %}
+            {% if room.name %}
+                <li><a href="{% url 'room' room=room.name %}?username={{ username }}">{{ room.name }}</a></li>
+                <li><a href="{% url 'getMessages' room=room.name %}">View Messages</a></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</div> {% endcomment %}
+
+{% endblock %}
